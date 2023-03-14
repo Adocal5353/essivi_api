@@ -14,7 +14,7 @@ class Client(db.Model):
     commandes = db.relationship('Commande',backref='client')
     ventes=db.relationship('Vente',backref='client')
 
-
+    """La classe!!!"""
     def format(self):
         return {
             "name":self.name,

@@ -14,7 +14,7 @@ from src.models.User import User
 from src.models.Ventes import Vente
 from src.controller.User_controller import user
 from flask_jwt_extended import JWTManager
-
+from flask_cors import CORS
 #/*TODO: Create a runner that works*/
 
 jwt = JWTManager()
@@ -38,7 +38,7 @@ def create_app(test_config=None):
 
     db.app=app
     db.init_app(app)
-
+    CORS(app)
     jwt.init_app(app)
     app.register_blueprint(auth)
     app.register_blueprint(user)

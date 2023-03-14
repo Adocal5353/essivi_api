@@ -10,6 +10,13 @@ from flask_jwt_extended import jwt_required,current_user
 
 user = Blueprint("user",__name__,url_prefix="/api/v1/user")
 
+@user.get('/me')
+def me():
+    return jsonify({
+        'Name':'Caleb',
+        'Surename':'ADOGLI'
+    })
+
 @user.get('/all')
 @jwt_required()
 def get_all_users():

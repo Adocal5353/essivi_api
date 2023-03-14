@@ -1,6 +1,7 @@
 from src.models.db import db
 import datetime
 import enum
+from src.models.Client import Client
 
 class EtatLivraison(enum.Enum):
     En_attente = 1
@@ -14,3 +15,20 @@ class Commande(db.Model):
     client_id = db.Column(db.Integer,db.ForeignKey('client.id'))
     details = db.relationship('Detail_com')
     ventes =db.relationship('Vente',backref='commande')
+
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    def format(self):
+        return {
+            "id":self.id,
+            "date_com":self.date_com,
+            "etat_com":self.etat_com,
+            "date_livraison":self.date_livraison,
+            "client":Client.query.get(self.client_id).format()
+        }

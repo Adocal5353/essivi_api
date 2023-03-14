@@ -33,14 +33,15 @@ def login():
                 'status':'Success',
                 'message':'User authentifiated successfully',
                 'access_token':access_token,
-                'refresh_token':refresh_token
+                'refresh_token':refresh_token,
+                'user':user.format()
             }),sts.HTTP_200_OK
         else:
             return jsonify({
                 'status': 'fail',
                 'Message':'Verify your authentification informations'
             }),sts.HTTP_400_BAD_REQUEST
-        
+
     except Exception as e:
         print(e)
         db.session.rollback()

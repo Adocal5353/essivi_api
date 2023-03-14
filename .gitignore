@@ -4,6 +4,4 @@ __pycache__
 .pytest_cache
 .env
 .flaskenv
-essiviDB.session.sql
-instance
 rest.http
